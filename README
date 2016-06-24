@@ -1,0 +1,41 @@
+orlykor12, idan0610
+Idan Refaeli (305681132), Orly Koren (203595541)
+EX: 5
+
+FILES:
+README -- This file
+Makefile -- Makefile of the project
+emServer.cpp -- The server side program.
+emClient.cpp -- The client side program.
+
+REMARKS:
+
+
+ANSWERS:
+Q1:
+a. On the client side, in the loop we will add a new function trying to read
+incoming messages from the server, and if there are, it will print to the 
+client standard output a message about the new event.
+b. On the server side, we will need to add the list of client names their
+socket fds, and when a "CREATE AND DISTRIBUTE" command comes from some client,
+it will pass over all the client's sockets and send to each one a message.
+
+Q2:
+We prefer TCP because we want to make sure the messages sent will be delivered
+and in the order they were sent. With TCP we can do that, while with UDP there
+is no guarantee that this will happen. For example, the client may send
+REGISTER and UNREGISTER commands, but the server will get the commands on the
+opposite order (UNREGISTER first).
+
+Q3:
+a. Online multiplyer games - UDP is better because it is faster, and for online
+games we prefer that they will work fast without delays.
+b. Videos - UDP is better as we want the video to play smoothly and without
+delayes.
+
+Q4:
+We will write all the data to a file, and the file will save all the clients
+and events currently on the server. Once in a while, we will flush the file.
+Then, where is a server failure, we can restore the data from the file, and
+maybe just small part of the data that wasnt saved on the file before it was
+flushed will be lost.
